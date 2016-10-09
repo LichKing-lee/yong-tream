@@ -33,6 +33,12 @@
     QUnit.test("module test", function(assert){
         assert.equal(this.arr[0], "a", "before test");
     });
+
+    QUnit.module("module with test", function(){
+        QUnit.test("module inner test", function(assert){
+            assert.ok(true, "boolean test");
+        });
+    });
 </script>
 </body>
 </html>

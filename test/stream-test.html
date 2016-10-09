@@ -24,8 +24,9 @@
         });
 
         for(var i = 0; i < result.get().length; i++){
-            assert.ok(result.get()[i] === (this.arr[i] + "1"));
+            assert.ok(result.get()[i] === (this.arr[i] + "1"), "each test");
         }
+        assert.deepEqual(result.get(), ["a1", "b1", "c1", "d1", "e1"], "deep equal test");
     });
     QUnit.test("filter function test", function(assert){
         var stream = new Yong(this.arr);
@@ -33,6 +34,30 @@
             return ele === "a";
         });
         assert.equal(result.get().length, 1);
+    });
+    QUnit.test("peek function test", function(assert){
+        var stream = new Yong(this.arr);
+        var result = stream.peek(function(ele){
+            console.log(ele);
+        });
+        assert.deepEqual(result.get(), this.arr, "peek result deep equal");
+    });
+    QUnit.test("map & filter & peek pipeline test", function(assert){
+        var result = new Yong(this.arr).
+                map(function(ele){
+                    return ele + "asd"
+                }).
+                peek(function(ele){
+                    console.log("first " + ele);
+                }).
+                filter(function(ele){
+                    return ele.indexOf("b") > -1;
+                }).
+                peek(function(ele){
+                    console.log("final " + ele);
+                }).get();
+
+        assert.deepEqual(result, ["basd"]);
     });
 </script>
 </body>

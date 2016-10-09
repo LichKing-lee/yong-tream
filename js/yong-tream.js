@@ -31,5 +31,13 @@
         return new Stream(arr);
     };
 
+    fn.peek = function(consumer){
+        this._arr.forEach(function(val){
+            consumer(val);
+        });
+
+        return new Stream(this._arr);
+    };
+
     window.Yong = Stream;
 })();
