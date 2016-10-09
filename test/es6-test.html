@@ -18,20 +18,16 @@
         }
     });
     QUnit.test("map function test", function(assert){
-        var stream = new Yong(this.arr);
-        var result = stream.map(function(e){
-            return e + "1";
-        });
+        let stream = new Yong(this.arr);
+        let result = stream.map(e => e + "1");
 
         for(var i = 0; i < result.get().length; i++){
             assert.ok(result.get()[i] === (this.arr[i] + "1"));
         }
     });
     QUnit.test("filter function test", function(assert){
-        var stream = new Yong(this.arr);
-        var result = stream.filter(function(ele){
-            return ele === "a";
-        });
+        let stream = new Yong(this.arr);
+        let result = stream.filter(e => e === "a");
         assert.equal(result.get().length, 1);
     });
 </script>
