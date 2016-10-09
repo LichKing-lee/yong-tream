@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>QUnit Example</title>
+    <link rel="stylesheet" href="../bower_components/qunit/qunit/qunit.css">
+</head>
+<body>
+<div id="qunit"></div>
+<div id="qunit-fixture"></div>
+<script src="../bower_components/qunit/qunit/qunit.js"></script>
+<script src="../js/yong-tream.js"></script>
+<script>
+    QUnit.module("init module", {});
+    QUnit.test("qunit init test", function(assert){
+        assert.ok(1 == 1, "qunit success");
+    });
+
+    QUnit.test("Array test", function(assert){
+        var arr = ["a", "b", "c"];
+
+        arr.forEach(function(val, idx){
+            assert.ok(typeof val === "string", "value type test");
+            assert.ok(typeof idx === "number", "index type test");
+        });
+    });
+
+    QUnit.module("qunit module", {
+        before : function(){
+            this.arr = ["a", "b", "c"];
+        }
+    });
+    QUnit.test("module test", function(assert){
+        assert.equal(this.arr[0], "a", "before test");
+    });
+
+    QUnit.module("stream module", {
+        before : function(){
+            this.arr = ["a", "b", "c", "d", "e"];
+        }
+    });
+    QUnit.test("map function test", function(assert){
+        var stream = new Yong(this.arr);
+        var result = stream.map(function(e){
+            return e + "1";
+        });
+
+        for(var i = 0; i < result.get().length; i++){
+            assert.ok(result.get()[i] === (this.arr[i] + "1"));
+        }
+    });
+    QUnit.test("filter function test", function(assert){
+        var stream = new Yong(this.arr);
+        var result = stream.filter(function(ele){
+            return ele === "a";
+        });
+        assert.equal(result.get().length, 1);
+    });
+</script>
+</body>
+</html>
