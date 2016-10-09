@@ -1,0 +1,17 @@
+{
+  "name": "yong-tream",
+  "description": "",
+  "main": "/js/yong-tream.js",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "qunit": "^2.0.1"
+  }
+}
