@@ -39,6 +39,25 @@
             assert.ok(true, "boolean test");
         });
     });
+
+    QUnit.module("module lifecycle test", {
+        before : function(){
+            this.a = [1, 2, 3];
+        },
+        beforeEach : function(){
+            this.b = [1, 2, 3];
+        }
+    });
+    QUnit.test("test fixture", function(assert){
+        this.a.push(4);
+        this.b.push(4);
+        assert.ok(true);
+    });
+    QUnit.test("lifecyle test", function(assert){
+        console.log(this.a);
+        assert.deepEqual(this.a, [1, 2, 3, 4]);
+        assert.deepEqual(this.b, [1, 2, 3]);
+    });
 </script>
 </body>
 </html>

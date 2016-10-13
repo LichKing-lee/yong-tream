@@ -39,5 +39,25 @@
         return new Stream(this._arr);
     };
 
+    fn.anyMatch = function(arg){
+        for(var i = 0; i < this._arr.length; i++){
+            if(this._arr[i] === arg){
+                return true;
+            }
+        }
+
+        return false;
+    };
+
+    fn.allMatch = function(arg){
+        for(var i = 0; i < this._arr.length; i++){
+            if(this._arr[i] !== arg){
+                return false;
+            }
+        }
+
+        return true;
+    };
+
     window.Yong = Stream;
 })();
